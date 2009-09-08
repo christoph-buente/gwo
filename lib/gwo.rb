@@ -16,29 +16,27 @@ module GWO
     
     def gwo_end(uacct, id)
       javascript_tag(%{
-        if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
-        'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
-        '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
-        </script>
-        <script>
+        if(typeof(_gat)!='object')document.write('<sc'+'ript src="http'+
+        (document.location.protocol=='https:'?'s://ssl':'://www')+
+        '.google-analytics.com/ga.js"></sc'+'ript>')</script>
+        <script type="text/javascript">
         try {
-        _uacct = #{uacct.inspect};
-        urchinTracker("/#{id}/test");
-        } catch (err) { }
+        var pageTracker=_gat._getTracker("#{uacct.inspect}");
+        pageTracker._trackPageview("/#{id}/test");
+        }catch(err){}
       })
     end
     
     def gwo_conversion(uacct, id)
       javascript_tag(%{
-        if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
-        'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
-        '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
-        </script>
-        <script>
+        if(typeof(_gat)!='object')document.write('<sc'+'ript src="http'+
+        (document.location.protocol=='https:'?'s://ssl':'://www')+
+        '.google-analytics.com/ga.js"></sc'+'ript>')</script>
+        <script type="text/javascript">
         try {
-        _uacct = #{uacct.inspect};
-        urchinTracker("/#{id}/goal");
-        } catch (err) { }
+        var pageTracker=_gat._getTracker("#{uacct.inspect}");
+        pageTracker._trackPageview("/#{id}/goal");
+        }catch(err){}
       })
     end
     
